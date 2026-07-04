@@ -6,7 +6,10 @@ import { github } from '../assets'
 import { SectionWrapper } from '../hoc'
 import { projects } from '../constants'
 import { fadeIn,textVariant } from '../utils/motion'
-const ProjectCard=({index,name,description,tags,image,source_code_link,live_demo_link})=>{
+const ProjectCard=({index,name,description,tags,image,video,source_code_link,live_demo_link})=>{
+  const videoRef = React.useRef(null);
+  const handleEnter = () => { if (videoRef.current) { videoRef.current.currentTime = 0; videoRef.current.play(); } };
+  const handleLeave = () => { if (videoRef.current) videoRef.current.pause(); };
   return(
     <motion.div variants={fadeIn("up","spring",index*0.5,0.75)}>
         <Tilt
@@ -18,12 +21,19 @@ const ProjectCard=({index,name,description,tags,image,source_code_link,live_demo
         }}
         className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
         >
-          <div className='relative w-full h-[230px] group overflow-hidden rounded-2xl'>
-          <img src={image} alt={name}
-          className='w-full h-full object-cover object-top rounded-2xl transition-[object-position] duration-[8000ms] ease-linear group-hover:object-bottom'/>
+          <div className='relative w-full h-[230px] group overflow-hidden rounded-2xl' onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+          {video ? (
+            <video ref={videoRef} poster={image} muted loop playsInline preload="metadata"
+            className='w-full h-full object-cover object-top rounded-2xl'>
+              <source src={video} type='video/webm' />
+            </video>
+          ) : (
+            <img src={image} alt={name}
+            className='w-full h-full object-cover object-top rounded-2xl transition-[object-position] duration-[8000ms] ease-linear group-hover:object-bottom'/>
+          )}
           <div className='absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/80 to-transparent flex items-center gap-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
             <span className='w-2 h-2 rounded-full bg-green-400 animate-pulse'/>
-            <span className='text-white text-[12px] tracking-wide'>Live preview — hover to explore</span>
+            <span className='text-white text-[12px] tracking-wide'>Video demo — hover to play</span>
           </div>
           <div className='absolute inset-0 flex justify-end gap-2 m-3 card-img_hover'>
             {live_demo_link && (

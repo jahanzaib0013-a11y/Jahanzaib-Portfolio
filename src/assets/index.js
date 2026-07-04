@@ -32,6 +32,11 @@ import LittleLuxuries from "./screenshots/littleluxuries.png";
 import AuraCover from "./screenshots/auracover.png";
 import Decorum from "./screenshots/decorum.png";
 import ElectricLove from "./screenshots/electriclove.png";
+import AuraCoverVideo from "./videos/auracover.webm";
+import DecorumVideo from "./videos/decorum.webm";
+import ElectricLoveVideo from "./videos/electriclove.webm";
+import InsightFlowVideo from "./videos/insightflow.webm";
+import LittleLuxuriesVideo from "./videos/littleluxuries.webm";
 
 
 
@@ -73,6 +78,11 @@ export {
   AuraCover,
   Decorum,
   ElectricLove,
+  AuraCoverVideo,
+  DecorumVideo,
+  ElectricLoveVideo,
+  InsightFlowVideo,
+  LittleLuxuriesVideo,
   Wave,
   CodeXspaces,
   Chess,

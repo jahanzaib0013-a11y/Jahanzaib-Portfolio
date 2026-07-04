@@ -17,7 +17,6 @@ import {
     express,
     postgresql,
     NextUp,
-    LiquidDMS,
     Faraway,
     InsightFlow,
     LittleLuxuries,
@@ -168,19 +167,6 @@ import {
       ],
       image: Decorum,
       live_demo_link: "https://refunds.decorumvending.co.uk",
-    },
-    {
-      name: "Liquid DMS",
-      description:
-        "AI-powered dealership management system with AI-assisted credit assessment and pricing, vehicle inventory management, and an analytics dashboard. I built the backend REST API with Node.js, Express, and MongoDB \u2014 including authentication, role-based access, and PDF document generation.",
-      tags: [
-        { name: "nodejs", color: "blue-text-gradient" },
-        { name: "ai-llm", color: "green-text-gradient" },
-        { name: "mongodb", color: "pink-text-gradient" },
-      ],
-      image: LiquidDMS,
-      source_code_link: "https://github.com/jahanzaib0013-a11y/Liquid-DMS",
-      live_demo_link: "https://liquid-dms.vercel.app",
     },
     {
       name: "Electric Love",

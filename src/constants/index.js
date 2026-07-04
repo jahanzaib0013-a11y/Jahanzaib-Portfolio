@@ -4,9 +4,6 @@ import {
     creator,
     web,
     javascript,
-    Freely,
-    html,
-    css,
     reactjs,
     redux,
     tailwind,
@@ -22,9 +19,6 @@ import {
     NextUp,
     LiquidDMS,
     Faraway,
-    Wave,
-    CodeXspaces,
-    Chess,
     threejs,
   } from "../assets";
 
@@ -208,69 +202,6 @@ import {
       ],
       image: Faraway,
       source_code_link: "https://github.com/jahanzaib0013-a11y/faraway-admin-panel",
-    },
-    {
-      name: "Wave",
-      description:
-        "A social platform to share moments and connect with friends — like, comment, share posts, and follow your favorite creators. Built on the MERN stack with a Tailwind CSS interface.",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ],
-      image: Wave,
-      source_code_link: "https://github.com/jahan-code/Wave",
-    },
-    {
-      name: "CodeXspaces",
-      description:
-        "A collaborative coding environment for solo developers and teams — real-time code collaboration powered by Socket.io with an intuitive workspace UI.",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "socket.io",
-          color: "green-text-gradient",
-        },
-        {
-          name: "css",
-          color: "pink-text-gradient",
-        },
-      ],
-      image: CodeXspaces,
-      source_code_link: "https://github.com/jahan-code/CodeXSpace",
-    },
-    {
-      name: "Chess-Cloud",
-      description:
-        "A real-time online chess platform where strategy meets competition — live multiplayer games over Socket.io with an Express backend.",
-      tags: [
-        {
-          name: "express",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "socket.io",
-          color: "green-text-gradient",
-        },
-        {
-          name: "react",
-          color: "pink-text-gradient",
-        },
-      ],
-      image: Chess,
-      source_code_link: "https://github.com/jahan-code/Chess-Cloud",
     },
   ];
 

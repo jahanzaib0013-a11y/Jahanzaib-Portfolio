@@ -16,8 +16,6 @@ import {
     nextjs,
     express,
     postgresql,
-    NextUp,
-    Faraway,
     InsightFlow,
     LittleLuxuries,
     AuraCover,
@@ -205,30 +203,6 @@ import {
       image: LittleLuxuries,
       source_code_link: "https://github.com/jahanzaib0013-a11y/LittleLuxuries",
       live_demo_link: "https://little-luxuries.vercel.app",
-    },
-    {
-      name: "NextUp",
-      description:
-        "A modern productivity platform for planning and tracking work, built with Next.js and TypeScript. Features a clean, responsive UI, secure authentication, and a MongoDB-backed API for real-time task management.",
-      tags: [
-        { name: "nextjs", color: "blue-text-gradient" },
-        { name: "typescript", color: "green-text-gradient" },
-        { name: "mongodb", color: "pink-text-gradient" },
-      ],
-      image: NextUp,
-      source_code_link: "https://github.com/jahanzaib0013-a11y/nextup",
-    },
-    {
-      name: "Faraway Admin Panel",
-      description:
-        "An admin dashboard for a yacht charter business \u2014 managing bookings, boats, and content through a fast, type-safe interface built with Next.js, TypeScript, and Tailwind CSS.",
-      tags: [
-        { name: "nextjs", color: "blue-text-gradient" },
-        { name: "typescript", color: "green-text-gradient" },
-        { name: "tailwind", color: "pink-text-gradient" },
-      ],
-      image: Faraway,
-      source_code_link: "https://github.com/jahanzaib0013-a11y/faraway-admin-panel",
     },
   ];
 

@@ -19,6 +19,11 @@ import {
     NextUp,
     LiquidDMS,
     Faraway,
+    InsightFlow,
+    LittleLuxuries,
+    Wave,
+    Chess,
+    Freely,
     threejs,
   } from "../assets";
 
@@ -202,6 +207,112 @@ import {
       ],
       image: Faraway,
       source_code_link: "https://github.com/jahanzaib0013-a11y/faraway-admin-panel",
+    },
+    {
+      name: "InsightFlow",
+      description:
+        "An analytics and insights dashboard that turns raw data into clear, actionable visualizations. Built with Next.js and TypeScript, deployed live on Vercel.",
+      tags: [
+        {
+          name: "nextjs",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "typescript",
+          color: "green-text-gradient",
+        },
+        {
+          name: "vercel",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: InsightFlow,
+      source_code_link: "https://github.com/jahanzaib0013-a11y/InsightFlow",
+      live_demo_link: "https://insight-flow-ruby.vercel.app",
+    },
+    {
+      name: "Little Luxuries",
+      description:
+        "A boutique e-commerce storefront with a polished shopping experience — product catalog, cart, and checkout flow. Built with Next.js and TypeScript, deployed live on Vercel.",
+      tags: [
+        {
+          name: "nextjs",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "typescript",
+          color: "green-text-gradient",
+        },
+        {
+          name: "e-commerce",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: LittleLuxuries,
+      source_code_link: "https://github.com/jahanzaib0013-a11y/LittleLuxuries",
+      live_demo_link: "https://little-luxuries.vercel.app",
+    },
+    {
+      name: "Wave",
+      description:
+        "A social platform to share moments and connect with friends — like, comment, share posts, and follow your favorite creators. Built on the MERN stack with a Tailwind CSS interface.",
+      tags: [
+        {
+          name: "react",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "mongodb",
+          color: "green-text-gradient",
+        },
+        {
+          name: "tailwind",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: Wave,
+      source_code_link: "https://github.com/jahan-code/Wave",
+      live_demo_link: "https://wave-liart.vercel.app",
+    },
+    {
+      name: "Chess-Cloud",
+      description:
+        "A real-time online chess platform where strategy meets competition — live multiplayer games over Socket.io with an Express backend.",
+      tags: [
+        {
+          name: "express",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "socket.io",
+          color: "green-text-gradient",
+        },
+        {
+          name: "react",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: Chess,
+      source_code_link: "https://github.com/jahan-code/Chess-Cloud",
+      live_demo_link: "https://chess-cloud.vercel.app",
+    },
+    {
+      name: "Freely",
+      description:
+        "A simple and secure video conferencing app powered by Zego Cloud — create a private room with a unique ID and password and start your call instantly.",
+      tags: [
+        {
+          name: "react",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "zego-cloud",
+          color: "green-text-gradient",
+        },
+      ],
+      image: Freely,
+      source_code_link: "https://github.com/jahan-code/freely",
+      live_demo_link: "https://freely-snowy.vercel.app",
     },
   ];
 

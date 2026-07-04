@@ -18,9 +18,13 @@ const ProjectCard=({index,name,description,tags,image,source_code_link,live_demo
         }}
         className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
         >
-          <div className='relative w-full h-[230px]'>
-          <img src={image} alt={name} 
-          className='w-full h-full object-cover rounded-2xl'/>
+          <div className='relative w-full h-[230px] group overflow-hidden rounded-2xl'>
+          <img src={image} alt={name}
+          className='w-full h-full object-cover object-top rounded-2xl transition-[object-position] duration-[8000ms] ease-linear group-hover:object-bottom'/>
+          <div className='absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/80 to-transparent flex items-center gap-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
+            <span className='w-2 h-2 rounded-full bg-green-400 animate-pulse'/>
+            <span className='text-white text-[12px] tracking-wide'>Live preview — hover to explore</span>
+          </div>
           <div className='absolute inset-0 flex justify-end gap-2 m-3 card-img_hover'>
             {live_demo_link && (
               <div onClick={()=>window.open(live_demo_link,"_blank")} title="Live demo" className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'>

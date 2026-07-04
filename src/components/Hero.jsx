@@ -22,7 +22,7 @@ const Hero = () => {
 
 
             <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I’m a Developer<br className='sm:block hidden'/> Skilled in the MERN Stack,<br className='sm:block hidden'/> Turning Great Ideas into Great Websites.
+            Full-Stack Developer<br className='sm:block hidden'/> building modern web apps with<br className='sm:block hidden'/> Next.js, TypeScript &amp; the MERN stack.
 
             </p>
           </div>

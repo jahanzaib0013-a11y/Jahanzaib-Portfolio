@@ -15,13 +15,19 @@ import {
     git,
     figma,
     docker,
-    
+    typescript,
+    nextjs,
+    express,
+    postgresql,
+    NextUp,
+    LiquidDMS,
+    Faraway,
     Wave,
     CodeXspaces,
     Chess,
     threejs,
   } from "../assets";
-  
+
   export const navLinks = [
     {
       id: "about",
@@ -36,34 +42,30 @@ import {
       title: "Contact",
     },
   ];
-  
+
   const services = [
     {
-      title: "Web Developer",
+      title: "Full-Stack Developer",
       icon: web,
     },
     {
-      title: "Mern Stack Developer",
+      title: "Next.js & React Developer",
       icon: mobile,
     },
     {
-      title: "Frontend Developer",
+      title: "Backend & API Developer",
       icon: backend,
     },
     {
-      title: "Backend Developer",
+      title: "MERN Stack Developer",
       icon: creator,
     },
   ];
-  
+
   const technologies = [
     {
-      name: "HTML 5",
-      icon: html,
-    },
-    {
-      name: "CSS 3",
-      icon: css,
+      name: "TypeScript",
+      icon: typescript,
     },
     {
       name: "JavaScript",
@@ -74,6 +76,26 @@ import {
       icon: reactjs,
     },
     {
+      name: "Next JS",
+      icon: nextjs,
+    },
+    {
+      name: "Node JS",
+      icon: nodejs,
+    },
+    {
+      name: "Express",
+      icon: express,
+    },
+    {
+      name: "MongoDB",
+      icon: mongodb,
+    },
+    {
+      name: "PostgreSQL",
+      icon: postgresql,
+    },
+    {
       name: "Redux Toolkit",
       icon: redux,
     },
@@ -82,12 +104,8 @@ import {
       icon: tailwind,
     },
     {
-      name: "Node JS",
-      icon: nodejs,
-    },
-    {
-      name: "MongoDB",
-      icon: mongodb,
+      name: "Docker",
+      icon: docker,
     },
     {
       name: "Three JS",
@@ -101,9 +119,8 @@ import {
       name: "figma",
       icon: figma,
     },
- 
   ];
-  
+
   const experiences = [
     {
       title: "React.js Developer",
@@ -115,38 +132,8 @@ import {
         "",
       ],
     },
-    {
-      title: "",
-      company_name: "",
-      icon: '',
-      iconBg: "#E6DEDD",
-      date: "",
-      points: [
-        "",
-      ],
-    },
-    {
-      title: "",
-      company_name: "",
-      icon: ``,
-      iconBg: "",
-      date: "",
-      points: [
-        "",
-      ],
-    },
-    {
-      title: "",
-      company_name: "",
-      icon: ``,
-      iconBg: "#E6DEDD",
-      date: "",
-      points: [
-        "",
-      ],
-    },
   ];
-  
+
   const testimonials = [
     {
       testimonial:
@@ -156,29 +143,76 @@ import {
       company: "",
       image: "",
     },
-    {
-      testimonial:
-        "",
-      name: "",
-      designation: "",
-      company: "",
-      image: "",
-    },
-    {
-      testimonial:
-        "",
-      name: "",
-      designation: "",
-      company: "",
-      image: "",
-    },
   ];
-  
+
   const projects = [
+    {
+      name: "NextUp",
+      description:
+        "A modern productivity platform for planning and tracking work, built with Next.js and TypeScript. Features a clean, responsive UI, secure authentication, and a MongoDB-backed API for real-time task management.",
+      tags: [
+        {
+          name: "nextjs",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "typescript",
+          color: "green-text-gradient",
+        },
+        {
+          name: "mongodb",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: NextUp,
+      source_code_link: "https://github.com/jahanzaib0013-a11y/nextup",
+    },
+    {
+      name: "Liquid DMS",
+      description:
+        "A full dealer management system covering vehicle inventory, vendors, customers, and sales workflows. I built the backend REST API with Node.js, Express, and MongoDB — including authentication, role-based access, and PDF document generation.",
+      tags: [
+        {
+          name: "nodejs",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "express",
+          color: "green-text-gradient",
+        },
+        {
+          name: "mongodb",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: LiquidDMS,
+      source_code_link: "https://github.com/jahanzaib0013-a11y/Liquid-DMS",
+    },
+    {
+      name: "Faraway Admin Panel",
+      description:
+        "An admin dashboard for a yacht charter business — managing bookings, boats, and content through a fast, type-safe interface built with Next.js, TypeScript, and Tailwind CSS.",
+      tags: [
+        {
+          name: "nextjs",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "typescript",
+          color: "green-text-gradient",
+        },
+        {
+          name: "tailwind",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: Faraway,
+      source_code_link: "https://github.com/jahanzaib0013-a11y/faraway-admin-panel",
+    },
     {
       name: "Wave",
       description:
-        "Wave is the ultimate platform to share your moments, connect with friends.  Like, comment, and share posts. Follow your favorites and join the conversation, Whether you're a creative storyteller, a travel enthusiast, or someone who loves keeping up with the latest trends, Wave offers a vibrant community to express yourself.",
+        "A social platform to share moments and connect with friends — like, comment, share posts, and follow your favorite creators. Built on the MERN stack with a Tailwind CSS interface.",
       tags: [
         {
           name: "react",
@@ -199,7 +233,7 @@ import {
     {
       name: "CodeXspaces",
       description:
-        "Welcome to Codexspaces – your ultimate destination for seamless coding, collaboration, and innovation. Whether you're a solo developer, or part of a large tech team, Codexspaces provides a powerful and intuitive environment to bring your ideas to life.",
+        "A collaborative coding environment for solo developers and teams — real-time code collaboration powered by Socket.io with an intuitive workspace UI.",
       tags: [
         {
           name: "react",
@@ -220,41 +254,24 @@ import {
     {
       name: "Chess-Cloud",
       description:
-        "Step into the world of Chess Cloud, where strategy meets competition in real-time.Whether you're a beginner learning the moves or a grandmaster sharpening your skills, our online chess platform offers an exciting and immersive experience",
+        "A real-time online chess platform where strategy meets competition — live multiplayer games over Socket.io with an Express backend.",
       tags: [
         {
-          name: "Express",
+          name: "express",
           color: "blue-text-gradient",
         },
         {
-          name: "ChessBoard.jsx",
+          name: "socket.io",
           color: "green-text-gradient",
         },
         {
-          name: "socket.io",
+          name: "react",
           color: "pink-text-gradient",
         },
       ],
       image: Chess,
       source_code_link: "https://github.com/jahan-code/Chess-Cloud",
     },
-    {
-      name: "Freely",
-      description:
-        "Introducing Freely – a simple and secure video conferencing app powered by Zego Cloud! 🚀 Easily create a room with a unique Room ID and password, ensuring a private and seamless experience. No extra setup, just share your credentials and start your call instantly. Try it now!",
-      tags: [
-        {
-          name: "React",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "Zego-Cloud",
-          color: "green-text-gradient",
-        },
-      ],
-      image: Freely,
-      source_code_link: "https://github.com/jahan-code/freely",
-    },
   ];
-  
+
   export { services, technologies, experiences, testimonials, projects };

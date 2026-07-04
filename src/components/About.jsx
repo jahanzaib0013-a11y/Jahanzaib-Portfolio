@@ -39,7 +39,7 @@ const About = () => {
    variants={fadeIn("","",0.1,1)}
    className='mt-4 text-secondary text-17px max-w-3xl leading-[30px]'
    >
-    I am a MERN Stack Developer skilled in creating responsive and user-centric web applications using MongoDB, Express.js, React, and Node.js. My focus is on delivering high-quality digital experiences that are both engaging and functional. For innovative web solutions that resonate with your audience, feel free to reach out to me. Let’s collaborate to make your web presence remarkable.
+    I'm a Full-Stack Developer specializing in TypeScript, Next.js, and the MERN stack (MongoDB, Express.js, React, Node.js). I build fast, responsive, and user-centric web applications — from polished admin dashboards and productivity platforms to robust REST APIs with authentication and role-based access. I care about clean architecture, type safety, and shipping products that feel great to use. Have a project in mind? Let's build something remarkable together.
    </motion.p>
    <div className='mt-20 flex flex-wrap gap-10'>
     {services.map((service,index)=>(

@@ -20,6 +20,13 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import Freely from './Freely.png'
 import threejs from "./tech/threejs.svg";
+import typescript from "./tech/typescript-original.svg";
+import nextjs from "./tech/nextjs-original.svg";
+import express from "./tech/express-original.svg";
+import postgresql from "./tech/postgresql-original.svg";
+import NextUp from "./nextup.svg";
+import LiquidDMS from "./liquiddms.svg";
+import Faraway from "./faraway.svg";
 
 
 
@@ -49,6 +56,13 @@ export {
   tailwind,
   Freely,
   threejs,
+  typescript,
+  nextjs,
+  express,
+  postgresql,
+  NextUp,
+  LiquidDMS,
+  Faraway,
   Wave,
   CodeXspaces,
   Chess,

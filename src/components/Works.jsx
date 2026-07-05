@@ -8,7 +8,7 @@ import { projects } from '../constants'
 import { fadeIn,textVariant } from '../utils/motion'
 const ProjectCard=({index,name,description,tags,image,video,source_code_link,live_demo_link})=>{
   const videoRef = React.useRef(null);
-  const handleEnter = () => { if (videoRef.current) { videoRef.current.currentTime = 0; videoRef.current.play(); } };
+  const handleEnter = () => { if (videoRef.current) videoRef.current.play(); };
   const handleLeave = () => { if (videoRef.current) videoRef.current.pause(); };
   return(
     <motion.div variants={fadeIn("up","spring",index*0.5,0.75)}>
@@ -23,10 +23,14 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
         >
           <div className='relative w-full h-[230px] group overflow-hidden rounded-2xl' onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
           {video ? (
+            <>
             <video ref={videoRef} poster={image} muted loop playsInline preload="metadata"
             className='w-full h-full object-cover object-top rounded-2xl'>
               <source src={video} type='video/webm' />
             </video>
+            <img src={image} alt={name}
+            className='absolute inset-0 w-full h-full object-cover object-top rounded-2xl pointer-events-none transition-opacity duration-500 opacity-100 group-hover:opacity-0'/>
+            </>
           ) : (
             <img src={image} alt={name}
             className='w-full h-full object-cover object-top rounded-2xl transition-[object-position] duration-[8000ms] ease-linear group-hover:object-bottom'/>

@@ -18,7 +18,7 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
           scale:1.02,
           speed:450
         }}
-        className="sm:w-[380px] w-full group/card"
+        className="w-full h-full group/card"
         >
         <div className='relative rounded-2xl p-[1px] bg-gradient-to-b from-white/15 via-white/5 to-transparent transition-all duration-300 group-hover/card:from-[#915eff]/70 group-hover/card:via-[#915eff]/20 group-hover/card:shadow-[0_20px_60px_-15px_rgba(145,94,255,0.45)]'>
         <div className='bg-tertiary rounded-2xl overflow-hidden'>
@@ -108,7 +108,7 @@ const Works = () => {
           and manage projects effectively.
     </motion.p>
     </div>
-    <div className='mt-20 flex flex-wrap gap-7'>
+    <div className='mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7'>
     {
       projects.map((project,index)=>(
         <ProjectCard key={`project-${index}`}

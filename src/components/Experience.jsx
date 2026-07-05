@@ -69,17 +69,17 @@ const WorkCard = ({ onZoom }) => (
 
       <div className='mt-5 grid grid-cols-1 md:grid-cols-2 gap-3.5'>
         {/* recognition */}
-        <div className='flex items-center gap-4 p-4 rounded-xl bg-primary border border-white/5'>
+        <div className='flex items-center gap-5 p-5 rounded-xl bg-primary border border-white/5'>
           <img
             src={qubitarsAppreciation}
             alt='Qubitars Work Appreciation post recognizing Jahanzaib Iftikhar, Backend Developer'
             loading='lazy'
             onClick={() => onZoom(qubitarsAppreciation)}
-            className='w-[70px] h-[70px] shrink-0 rounded-lg object-cover border border-white/10 cursor-zoom-in transition-transform hover:scale-[1.04]'
+            className='w-[120px] h-[120px] shrink-0 rounded-xl object-cover border border-white/10 cursor-zoom-in transition-transform hover:scale-[1.04]'
           />
           <div>
-            <p className='text-[#00cea8] text-[10px] tracking-[0.2em] mb-1.5'>★ RECOGNITION</p>
-            <p className='text-secondary text-[13px] leading-[19px]'>Recognized by Qubitars with a Work Appreciation award for dedication and impact as a Backend Developer.</p>
+            <p className='text-[#00cea8] text-[11px] tracking-[0.2em] mb-2'>★ RECOGNITION</p>
+            <p className='text-secondary text-[14px] leading-[21px]'>Recognized by Qubitars with a Work Appreciation award for dedication and impact as a Backend Developer.</p>
           </div>
         </div>
         {/* writing */}

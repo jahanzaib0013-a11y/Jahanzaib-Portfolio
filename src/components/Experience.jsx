@@ -1,8 +1,31 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { styles } from '../style'
 import { SectionWrapper } from '../hoc'
 import { fadeIn, textVariant } from '../utils/motion'
+import { qubitarsAppreciation } from '../assets'
+
+const Lightbox = ({ src, onClose }) => {
+  React.useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+  }, [onClose]);
+  return (
+    <motion.div
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      onClick={onClose}
+      className='fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/90 backdrop-blur-sm cursor-zoom-out'
+    >
+      <motion.img
+        initial={{ scale: 0.92 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }}
+        src={src} alt='Qubitars Work Appreciation — Jahanzaib Iftikhar'
+        className='max-w-[92vw] max-h-[88vh] rounded-2xl border border-white/15'
+      />
+    </motion.div>
+  );
+};
 
 const IconAward = () => (
   <svg width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
@@ -15,7 +38,7 @@ const IconPen = () => (
   </svg>
 )
 
-const WorkCard = () => (
+const WorkCard = ({ onZoom }) => (
   <motion.div variants={fadeIn('up', 'spring', 0.1, 0.7)} className='relative'>
     <span className='absolute -left-[34px] top-7 w-4 h-4 rounded-full bg-primary border-[3px] border-[#915eff] shadow-[0_0_14px_rgba(145,94,255,0.7)]' />
     <div className='bg-tertiary border border-white/5 rounded-2xl p-6 sm:p-7 transition-colors hover:border-[#915eff]/60'>
@@ -47,9 +70,13 @@ const WorkCard = () => (
       <div className='mt-5 grid grid-cols-1 md:grid-cols-2 gap-3.5'>
         {/* recognition */}
         <div className='flex items-center gap-4 p-4 rounded-xl bg-primary border border-white/5'>
-          <div className='w-[70px] h-[70px] shrink-0 rounded-lg bg-gradient-to-br from-[#915eff]/30 to-[#00cea8]/20 border border-white/10 flex items-center justify-center text-[#915eff]'>
-            <IconAward />
-          </div>
+          <img
+            src={qubitarsAppreciation}
+            alt='Qubitars Work Appreciation post recognizing Jahanzaib Iftikhar, Backend Developer'
+            loading='lazy'
+            onClick={() => onZoom(qubitarsAppreciation)}
+            className='w-[70px] h-[70px] shrink-0 rounded-lg object-cover border border-white/10 cursor-zoom-in transition-transform hover:scale-[1.04]'
+          />
           <div>
             <p className='text-[#00cea8] text-[10px] tracking-[0.2em] mb-1.5'>★ RECOGNITION</p>
             <p className='text-secondary text-[13px] leading-[19px]'>Recognized by Qubitars with a Work Appreciation award for dedication and impact as a Backend Developer.</p>
@@ -91,6 +118,7 @@ const EduCard = () => (
 )
 
 const Experience = () => {
+  const [zoom, setZoom] = React.useState(null);
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -101,10 +129,14 @@ const Experience = () => {
       <div className='mt-12 relative pl-8'>
         <span className='absolute left-[7px] top-2 bottom-2 w-0.5 rounded bg-gradient-to-b from-[#915eff] via-[#00cea8] to-transparent' />
         <div className='flex flex-col gap-7'>
-          <WorkCard />
+          <WorkCard onZoom={setZoom} />
           <EduCard />
         </div>
       </div>
+
+      <AnimatePresence>
+        {zoom && <Lightbox src={zoom} onClose={() => setZoom(null)} />}
+      </AnimatePresence>
     </>
   )
 }

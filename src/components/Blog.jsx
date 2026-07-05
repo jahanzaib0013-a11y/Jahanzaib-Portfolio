@@ -53,18 +53,23 @@ const BlogCard = ({ post, index, onOpen }) => (
     variants={fadeIn('up', 'spring', index * 0.12, 0.6)}
     whileHover={{ y: -5 }}
     onClick={onOpen}
-    className='group relative flex flex-col rounded-2xl bg-tertiary border border-white/5 p-6 cursor-pointer transition-colors duration-300 hover:border-[#915eff]/70'
+    className='group relative flex flex-col rounded-2xl bg-tertiary border border-white/5 overflow-hidden cursor-pointer transition-colors duration-300 hover:border-[#915eff]/70'
   >
-    <div className='absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#915eff] to-[#00cea8] opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
-    <div className='flex items-center gap-3 text-[12px] mb-4'>
-      <span className='text-[#915eff] font-medium px-2.5 py-1 rounded-full bg-[#915eff]/15'>{post.tag}</span>
-      <span className='text-secondary'>{post.date} · {post.readTime}</span>
+    <div className='relative h-[150px] overflow-hidden'>
+      <img src={post.cover} alt={post.title} className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105' />
+      <div className='absolute inset-0 bg-gradient-to-t from-tertiary via-transparent to-transparent' />
     </div>
-    <h3 className='text-white font-bold text-[19px] leading-snug'>{post.title}</h3>
-    <p className='mt-3 text-secondary text-[14px] leading-[22px] flex-1'>{post.excerpt}</p>
-    <span className='mt-5 text-[#00cea8] text-[14px] font-semibold inline-flex items-center gap-1.5'>
-      Read article <span className='transition-transform group-hover:translate-x-1'>→</span>
-    </span>
+    <div className='flex flex-col flex-1 p-6'>
+      <div className='flex items-center gap-3 text-[12px] mb-3'>
+        <span className='text-[#915eff] font-medium px-2.5 py-1 rounded-full bg-[#915eff]/15'>{post.tag}</span>
+        <span className='text-secondary'>{post.date} · {post.readTime}</span>
+      </div>
+      <h3 className='text-white font-bold text-[19px] leading-snug'>{post.title}</h3>
+      <p className='mt-3 text-secondary text-[14px] leading-[22px] flex-1'>{post.excerpt}</p>
+      <span className='mt-5 text-[#00cea8] text-[14px] font-semibold inline-flex items-center gap-1.5'>
+        Read article <span className='transition-transform group-hover:translate-x-1'>→</span>
+      </span>
+    </div>
   </motion.div>
 )
 

@@ -1,8 +1,12 @@
 # RAG in Production: What Actually Moved the Needle
 
+![RAG in production](https://raw.githubusercontent.com/jahanzaib0013-a11y/dev-blog/main/assets/cover-rag.png)
+
 Retrieval-augmented generation looks trivial in a tutorial: embed some documents, stuff the top matches into a prompt, ask the model. Then you point real users at it and discover that "the top matches" are often the *wrong* matches, the model answers confidently from nothing, and nobody can tell you whether it's actually any good.
 
 I've built RAG into live products, and almost none of the wins came from the model. They came from the boring plumbing around it. Here's what actually mattered.
+
+![RAG flow: index documents by chunking, embedding and storing; then retrieve wide, re-rank narrow, ground the LLM, and return an answer with citations](https://raw.githubusercontent.com/jahanzaib0013-a11y/dev-blog/main/assets/rag-flow.svg)
 
 ## Chunking is a product decision, not a default
 

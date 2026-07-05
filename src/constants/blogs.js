@@ -1,6 +1,9 @@
 import structured from '../blog/structured-llm-output.md?raw'
 import payments from '../blog/payment-pipeline-aws.md?raw'
 import rag from '../blog/rag-in-production.md?raw'
+import coverLlm from '../assets/blog/cover-llm.png'
+import coverPayments from '../assets/blog/cover-payments.png'
+import coverRag from '../assets/blog/cover-rag.png'
 
 const REPO = 'https://github.com/jahanzaib0013-a11y/dev-blog/blob/main/posts'
 
@@ -13,6 +16,7 @@ export const blogs = [
     date: 'Jul 2026',
     readTime: '5 min read',
     tag: 'AI / LLMs',
+    cover: coverLlm,
     content: structured,
     url: `${REPO}/structured-llm-output.md`,
   },
@@ -24,6 +28,7 @@ export const blogs = [
     date: 'Jul 2026',
     readTime: '6 min read',
     tag: 'Backend / AWS',
+    cover: coverPayments,
     content: payments,
     url: `${REPO}/payment-pipeline-aws.md`,
   },
@@ -35,6 +40,7 @@ export const blogs = [
     date: 'Jul 2026',
     readTime: '6 min read',
     tag: 'AI / LLMs',
+    cover: coverRag,
     content: rag,
     url: `${REPO}/rag-in-production.md`,
   },

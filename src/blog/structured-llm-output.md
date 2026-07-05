@@ -1,5 +1,7 @@
 # How I Get Reliable Structured Output from LLMs (and Stop Fighting JSON)
 
+![Reliable structured output from LLMs](https://raw.githubusercontent.com/jahanzaib0013-a11y/dev-blog/main/assets/cover-llm.png)
+
 When I first started wiring language models into production features, the demo always worked and the tenth real request always broke. The model would return a friendly sentence wrapped around the JSON I asked for, or trail off mid-object, or invent a field name I never defined. On AuraCover — an AI SaaS that now serves 1,200+ generations a month — I couldn't ship "usually valid." The API layer needed structured output *every* time.
 
 Here's the approach that got me from flaky to boringly reliable.
@@ -32,6 +34,8 @@ Return a corrected JSON object only.
 ```
 
 One targeted retry fixes the large majority of failures, because the model gets to see exactly what it did wrong. Two retries covers almost everything else. Past that, I fail loudly rather than silently serving garbage.
+
+![The validate-and-retry loop](https://raw.githubusercontent.com/jahanzaib0013-a11y/dev-blog/main/assets/retry-loop.svg)
 
 ## 4. Make temperature match the job
 

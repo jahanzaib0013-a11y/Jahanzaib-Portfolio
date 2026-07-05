@@ -1,5 +1,7 @@
 # Building a Penny-Exact Payment Pipeline on AWS
 
+![A penny-exact payment pipeline on AWS](https://raw.githubusercontent.com/jahanzaib0013-a11y/dev-blog/main/assets/cover-payments.png)
+
 Money is the one domain where "eventually consistent" and "close enough" are not acceptable answers. On the Decorum Vending project I built a pipeline that ingests payment events from vending terminals and reconciles them against our own records — and it has to balance to the penny across hundreds of transactions, every day, without a human checking.
 
 Here's how the pieces fit together, and the three mistakes that would have quietly cost real money if I hadn't caught them.
@@ -11,6 +13,8 @@ Nayax terminal  →  webhook  →  AWS SQS  →  Lambda  →  Supabase (Postgres
 ```
 
 Every payment terminal event hits a webhook, lands on an **SQS queue**, and is processed by a **Lambda** that normalizes it and writes to Postgres. The queue is the important part: it decouples "an event happened" from "we successfully recorded it," so a slow database or a deploy never drops a transaction on the floor.
+
+![Payment pipeline architecture: Nayax to SQS to Lambda to Postgres, with a dead-letter queue and nightly reconciliation](https://raw.githubusercontent.com/jahanzaib0013-a11y/dev-blog/main/assets/payment-pipeline.svg)
 
 ## Mistake 1: assuming events arrive once
 

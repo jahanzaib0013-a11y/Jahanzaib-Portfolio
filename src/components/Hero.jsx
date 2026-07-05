@@ -1,8 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { styles } from '../style'
-import { github } from '../assets'
-import { ComputersCanvas } from './canvas'
+import { github, jahanzaib } from '../assets'
+import { ParticleField } from './canvas'
 
 const roles = [
   'Full Stack AI Developer',
@@ -20,6 +20,11 @@ const Hero = () => {
 
   return (
     <section className='relative w-full h-screen mx-auto overflow-hidden'>
+      {/* interactive particle network background */}
+      <div className='absolute inset-0 z-0'>
+        <ParticleField />
+      </div>
+
       {/* ambient glows */}
       <div className='absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[#915eff] opacity-20 blur-[120px] pointer-events-none' />
       <div className='absolute bottom-[-15%] left-[-8%] w-[500px] h-[500px] rounded-full bg-[#00cea8] opacity-10 blur-[120px] pointer-events-none' />
@@ -72,10 +77,21 @@ const Hero = () => {
           </div>
         </div>
 
+        {/* right: profile image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className='relative z-10 shrink-0'
+        >
+          <div className='absolute inset-0 rounded-full bg-gradient-to-tr from-[#915eff] to-[#00cea8] blur-2xl opacity-40 scale-110' />
+          <img
+            src={jahanzaib}
+            alt='Jahanzaib'
+            className='relative w-[240px] sm:w-[300px] lg:w-[360px] rounded-full border-4 border-white/10 object-cover'
+          />
+        </motion.div>
       </div>
-
-      {/* 3D computer canvas */}
-      <ComputersCanvas />
 
       {/* scroll indicator */}
       <div className='absolute xs:bottom-10 bottom-24 w-full flex justify-center items-center z-10'>

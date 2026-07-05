@@ -1,12 +1,85 @@
 import React from 'react'
 import { Tilt } from 'react-tilt'
-import {motion} from 'framer-motion'
+import {motion, AnimatePresence} from 'framer-motion'
 import {styles} from '../style'
 import { github } from '../assets'
 import { SectionWrapper } from '../hoc'
 import { projects } from '../constants'
 import { fadeIn,textVariant } from '../utils/motion'
-const ProjectCard=({index,name,description,tags,image,video,source_code_link,live_demo_link})=>{
+
+const ProjectModal=({project,onClose})=>{
+  React.useEffect(()=>{
+    const onKey = (e)=>{ if(e.key==='Escape') onClose(); };
+    window.addEventListener('keydown',onKey);
+    document.body.style.overflow='hidden';
+    return ()=>{ window.removeEventListener('keydown',onKey); document.body.style.overflow=''; };
+  },[onClose]);
+  if(!project) return null;
+  const {name,description,tags,image,video,source_code_link,live_demo_link} = project;
+  return(
+    <motion.div
+      initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
+      className='fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-sm'
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{opacity:0, scale:0.92, y:30}} animate={{opacity:1, scale:1, y:0}} exit={{opacity:0, scale:0.95, y:20}}
+        transition={{type:'spring', damping:24, stiffness:300}}
+        className='relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl bg-tertiary border border-white/10 shadow-[0_40px_120px_-20px_rgba(145,94,255,0.35)]'
+        onClick={(e)=>e.stopPropagation()}
+      >
+        <button onClick={onClose} title='Close'
+          className='absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-[16px] flex items-center justify-center cursor-pointer transition-colors hover:bg-[#915eff]'>
+          ✕
+        </button>
+
+        <div className='w-full bg-black'>
+          {video ? (
+            <video key={video} poster={image} controls autoPlay muted loop playsInline className='w-full max-h-[55vh] object-contain'>
+              <source src={video} type='video/webm' />
+            </video>
+          ) : (
+            <img src={image} alt={name} className='w-full max-h-[55vh] object-contain' />
+          )}
+        </div>
+
+        <div className='p-6 sm:p-8'>
+          <div className='flex flex-wrap items-center justify-between gap-4'>
+            <h3 className='text-white font-bold text-[26px]'>{name}</h3>
+            <div className='flex gap-3'>
+              {live_demo_link && (
+                <button onClick={()=>window.open(live_demo_link,'_blank')}
+                  className='flex items-center gap-2 px-4 h-10 rounded-full bg-[#915eff] text-white text-[14px] font-semibold cursor-pointer transition-transform hover:scale-105'>
+                  <span className='w-2 h-2 rounded-full bg-green-300 animate-pulse'/>
+                  Visit Live Site
+                </button>
+              )}
+              {source_code_link && (
+                <button onClick={()=>window.open(source_code_link,'_blank')}
+                  className='flex items-center gap-2 px-4 h-10 rounded-full bg-white/10 border border-white/15 text-white text-[14px] font-semibold cursor-pointer transition-colors hover:bg-white/20'>
+                  <img src={github} alt='' className='w-4 h-4 object-contain'/>
+                  Source Code
+                </button>
+              )}
+            </div>
+          </div>
+
+          <p className='mt-4 text-secondary text-[15px] leading-[26px]'>{description}</p>
+
+          <div className='mt-5 pt-5 border-t border-white/5 flex flex-wrap gap-2'>
+            {tags.map((tag)=>(
+              <span key={tag.name} className={`text-[13px] font-medium px-3 py-1.5 rounded-full bg-white/5 border border-white/10 ${tag.color}`}>
+                #{tag.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+const ProjectCard=({index,name,description,tags,image,video,source_code_link,live_demo_link,onOpen})=>{
   const videoRef = React.useRef(null);
   const handleEnter = () => { if (videoRef.current) videoRef.current.play(); };
   const handleLeave = () => { if (videoRef.current) videoRef.current.pause(); };
@@ -21,7 +94,7 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
         className="w-full h-full group/card"
         >
         <div className='relative rounded-2xl p-[1px] bg-gradient-to-b from-white/15 via-white/5 to-transparent transition-all duration-300 group-hover/card:from-[#915eff]/70 group-hover/card:via-[#915eff]/20 group-hover/card:shadow-[0_20px_60px_-15px_rgba(145,94,255,0.45)]'>
-        <div className='bg-tertiary rounded-2xl overflow-hidden'>
+        <div className='bg-tertiary rounded-2xl overflow-hidden cursor-pointer' onClick={onOpen}>
 
           <div className='relative w-full h-[215px] group' onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
           {video ? (
@@ -41,14 +114,14 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
           {/* top action buttons */}
           <div className='absolute top-3 right-3 flex gap-2 z-10'>
             {live_demo_link && (
-              <button onClick={()=>window.open(live_demo_link,"_blank")} title="Open live site"
+              <button onClick={(e)=>{e.stopPropagation();window.open(live_demo_link,"_blank")}} title="Open live site"
               className='flex items-center gap-1.5 px-3 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-[12px] font-medium cursor-pointer transition-all duration-200 hover:bg-[#915eff] hover:border-[#915eff]'>
                 <span className='w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse'/>
                 Live
               </button>
             )}
             {source_code_link && (
-              <button onClick={()=>window.open(source_code_link,"_blank")} title="View source code"
+              <button onClick={(e)=>{e.stopPropagation();window.open(source_code_link,"_blank")}} title="View source code"
               className='flex items-center justify-center w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 cursor-pointer transition-all duration-200 hover:bg-[#915eff] hover:border-[#915eff]'>
                 <img src={github} alt="github" className='w-4 h-4 object-contain' />
               </button>
@@ -65,7 +138,10 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
           </div>
 
           <div className='p-5'>
-            <p className='text-white font-bold text-[21px] leading-snug'>{name}</p>
+            <div className='flex items-center justify-between'>
+              <p className='text-white font-bold text-[21px] leading-snug'>{name}</p>
+              <span className='text-[12px] text-secondary opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 whitespace-nowrap'>View details →</span>
+            </div>
             <p className='mt-2.5 text-secondary text-[13.5px] leading-[22px]'>{description}</p>
 
             <div className='mt-4 pt-4 border-t border-white/5 flex flex-wrap gap-2'>
@@ -87,6 +163,7 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
   )
 }
 const Works = () => {
+  const [selected, setSelected] = React.useState(null);
   return (
     <>
     <motion.div>
@@ -114,11 +191,15 @@ const Works = () => {
         <ProjectCard key={`project-${index}`}
         {...project}
         index={index}
+        onOpen={()=>setSelected(project)}
         />
       ))
 
     }
     </div>
+    <AnimatePresence>
+      {selected && <ProjectModal project={selected} onClose={()=>setSelected(null)} />}
+    </AnimatePresence>
     </>
   )
 }

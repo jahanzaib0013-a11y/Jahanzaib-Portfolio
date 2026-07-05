@@ -1,6 +1,5 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 
 import { styles } from "../style";
 import { EarthCanvas } from "./canvas";
@@ -8,62 +7,6 @@ import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
 const Contact = () => {
-  const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Jahanzaib",
-          from_email: form.email,
-          to_email: "jahanzaib0013@gmail.com",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert("Ahh, something went wrong. Please try again.");
-        }
-      );
-  };
-
   const EMAIL = "jahanzaib0013@gmail.com";
   // TODO: set your real phone number (international format, no spaces) to enable Call & WhatsApp
   const PHONE = "";
@@ -72,6 +15,7 @@ const Contact = () => {
   );
   const meetHref = `mailto:${EMAIL}?subject=${encodeURIComponent("Interview request (Google Meet)")}&body=${meetBody}`;
   const zoomHref = `mailto:${EMAIL}?subject=${encodeURIComponent("Interview request (Zoom)")}&body=${meetBody}`;
+  const emailHref = `mailto:${EMAIL}?subject=${encodeURIComponent("Hello Jahanzaib")}`;
 
   const Icon = ({ d }) => (
     <svg width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>{d}</svg>
@@ -89,7 +33,7 @@ const Contact = () => {
           Hiring or want to work together? Pick whatever's easiest.
         </p>
 
-        {/* three quick options */}
+        {/* quick options */}
         <div className='mt-8 flex flex-col gap-4'>
           {/* Book an interview */}
           <div className='p-5 rounded-xl bg-tertiary border border-white/5'>
@@ -112,14 +56,14 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Email */}
-          <a href={`mailto:${EMAIL}`} className='group flex items-center gap-4 p-5 rounded-xl bg-tertiary border border-white/5 transition-colors hover:border-[#915eff]/60'>
+          {/* Email — opens the visitor's mail client, address not shown */}
+          <a href={emailHref} className='group flex items-center gap-4 p-5 rounded-xl bg-tertiary border border-white/5 transition-colors hover:border-[#915eff]/60'>
             <span className='w-11 h-11 shrink-0 rounded-xl bg-[#915eff]/15 flex items-center justify-center text-[#00cea8]'>
               <Icon d={<><rect x='2' y='4' width='20' height='16' rx='2'/><path d='M2 7l10 6 10-6'/></>} />
             </span>
             <div className='min-w-0'>
               <p className='text-white font-semibold text-[16px]'>Email Me</p>
-              <p className='text-secondary text-[13px] truncate group-hover:text-white transition-colors'>{EMAIL}</p>
+              <p className='text-secondary text-[13px] group-hover:text-white transition-colors'>Opens your mail app — write me directly.</p>
             </div>
             <span className='ml-auto text-[#00cea8] text-[18px] opacity-0 group-hover:opacity-100 transition-opacity'>→</span>
           </a>
@@ -147,59 +91,6 @@ const Contact = () => {
             )}
           </div>
         </div>
-
-        <div className='flex items-center gap-4 my-8'>
-          <span className='flex-1 h-px bg-white/10'/>
-          <span className='text-secondary text-[12px] uppercase tracking-wider'>or send a message</span>
-          <span className='flex-1 h-px bg-white/10'/>
-        </div>
-
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className='flex flex-col gap-8'
-        >
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Name</span>
-            <input
-              type='text'
-              name='name'
-              value={form.name}
-              onChange={handleChange}
-              placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email</span>
-            <input
-              type='email'
-              name='email'
-              value={form.email}
-              onChange={handleChange}
-              placeholder="What's your web address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message</span>
-            <textarea
-              rows={7}
-              name='message'
-              value={form.message}
-              onChange={handleChange}
-              placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
-          </label>
-
-          <button
-            type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
-          >
-            {loading ? "Sending..." : "Send"}
-          </button>
-        </form>
       </motion.div>
 
       <motion.div

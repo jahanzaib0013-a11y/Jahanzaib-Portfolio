@@ -4,5 +4,6 @@ import ComputersCanvas from "./Computers";
 import StarsCanvas from "./Stars";
 import ParticleField from "./ParticleField";
 import HeroOrb from "./HeroOrb";
+import HeroRings from "./HeroRings";
 
-export { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas, ParticleField, HeroOrb };
+export { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas, ParticleField, HeroOrb, HeroRings };

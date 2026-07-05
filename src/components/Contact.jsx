@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
 import { styles } from "../style";
-import { EarthCanvas } from "./canvas";
+import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
@@ -125,9 +125,44 @@ const Contact = () => {
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        className='xl:flex-1 xl:h-auto flex flex-col justify-center gap-5'
       >
-        <EarthCanvas />
+        <div className='relative overflow-hidden bg-black-100 rounded-2xl p-8 border border-white/5'>
+          <div className='absolute top-[-40%] right-[-20%] w-[300px] h-[300px] rounded-full bg-[#915eff] opacity-20 blur-[80px] pointer-events-none' />
+          <h3 className='text-white font-bold text-[24px] relative z-10'>Let's build something together</h3>
+          <p className='text-secondary text-[15px] mt-3 leading-[24px] relative z-10'>
+            Based in Gujranwala, Pakistan — open to onsite work in Lahore and remote roles.
+            Drop a message and I'll get back to you.
+          </p>
+
+          <div className='mt-8 flex flex-col gap-4 relative z-10'>
+            <a href='mailto:jahanzaib9599@gmail.com'
+              className='flex items-center gap-4 p-4 rounded-xl bg-tertiary border border-white/5 transition-colors hover:border-[#915eff]/60'>
+              <span className='w-10 h-10 rounded-full bg-[#915eff]/20 flex items-center justify-center text-[18px]'>✉️</span>
+              <div>
+                <p className='text-secondary text-[12px]'>Email</p>
+                <p className='text-white text-[14px] font-medium'>jahanzaib9599@gmail.com</p>
+              </div>
+            </a>
+            <a href='https://github.com/jahanzaib0013-a11y' target='_blank' rel='noreferrer'
+              className='flex items-center gap-4 p-4 rounded-xl bg-tertiary border border-white/5 transition-colors hover:border-[#915eff]/60'>
+              <span className='w-10 h-10 rounded-full bg-[#915eff]/20 flex items-center justify-center'>
+                <img src={github} alt='' className='w-5 h-5 object-contain' />
+              </span>
+              <div>
+                <p className='text-secondary text-[12px]'>GitHub</p>
+                <p className='text-white text-[14px] font-medium'>jahanzaib0013-a11y</p>
+              </div>
+            </a>
+            <div className='flex items-center gap-4 p-4 rounded-xl bg-tertiary border border-white/5'>
+              <span className='w-10 h-10 rounded-full bg-[#915eff]/20 flex items-center justify-center text-[18px]'>📍</span>
+              <div>
+                <p className='text-secondary text-[12px]'>Location</p>
+                <p className='text-white text-[14px] font-medium'>Gujranwala, Pakistan</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

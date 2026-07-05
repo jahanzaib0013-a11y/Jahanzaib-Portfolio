@@ -1,8 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { styles } from '../style'
-import { github, jahanzaib } from '../assets'
-import { ParticleField } from './canvas'
+import { github } from '../assets'
+import { ParticleField, HeroOrb } from './canvas'
 
 const roles = [
   'Full Stack AI Developer',
@@ -77,19 +77,14 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* right: profile image */}
+        {/* right: 3D distorted orb */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className='relative z-10 shrink-0'
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className='relative z-10 shrink-0 w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px]'
         >
-          <div className='absolute inset-0 rounded-full bg-gradient-to-tr from-[#915eff] to-[#00cea8] blur-2xl opacity-40 scale-110' />
-          <img
-            src={jahanzaib}
-            alt='Jahanzaib'
-            className='relative w-[240px] sm:w-[300px] lg:w-[360px] rounded-full border-4 border-white/10 object-cover'
-          />
+          <HeroOrb />
         </motion.div>
       </div>
 

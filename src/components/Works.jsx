@@ -110,7 +110,7 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
   const handleEnter = () => { if (videoRef.current) videoRef.current.play(); };
   const handleLeave = () => { if (videoRef.current) videoRef.current.pause(); };
   return(
-    <motion.div variants={fadeIn("up","spring",index*0.5,0.75)}>
+    <motion.div variants={fadeIn("up","spring",index*0.15,0.6)} initial="hidden" animate="show">
         <Tilt
         options={{
           max:8,
@@ -125,7 +125,7 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
           <div className='relative w-full h-[215px] group' onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
           {video ? (
             <>
-            <video ref={videoRef} poster={image} muted loop playsInline preload="metadata"
+            <video key={video} ref={videoRef} poster={image} muted loop playsInline preload="metadata"
             className='w-full h-full object-cover object-top'>
               <source src={video} type='video/webm' />
             </video>
@@ -240,7 +240,7 @@ const Works = () => {
     <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7'>
     {
       visible.map((project,index)=>(
-        <ProjectCard key={`project-${index}`}
+        <ProjectCard key={project.name}
         {...project}
         index={index}
         onOpen={()=>setSelected(project)}

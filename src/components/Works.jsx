@@ -7,15 +7,19 @@ import { SectionWrapper } from '../hoc'
 import { projects } from '../constants'
 import { fadeIn,textVariant } from '../utils/motion'
 
-const ProjectModal=({project,onClose})=>{
+const ProjectModal=({project,onClose,onPrev,onNext})=>{
   React.useEffect(()=>{
-    const onKey = (e)=>{ if(e.key==='Escape') onClose(); };
+    const onKey = (e)=>{
+      if(e.key==='Escape') onClose();
+      if(e.key==='ArrowLeft') onPrev();
+      if(e.key==='ArrowRight') onNext();
+    };
     window.addEventListener('keydown',onKey);
     document.body.style.overflow='hidden';
     return ()=>{ window.removeEventListener('keydown',onKey); document.body.style.overflow=''; };
-  },[onClose]);
+  },[onClose,onPrev,onNext]);
   if(!project) return null;
-  const {name,description,tags,image,video,source_code_link,live_demo_link} = project;
+  const {name,description,tags,image,video,source_code_link,live_demo_link,highlights} = project;
   return(
     <motion.div
       initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
@@ -31,6 +35,14 @@ const ProjectModal=({project,onClose})=>{
         <button onClick={onClose} title='Close'
           className='absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-[16px] flex items-center justify-center cursor-pointer transition-colors hover:bg-[#915eff]'>
           ✕
+        </button>
+        <button onClick={(e)=>{e.stopPropagation();onPrev();}} title='Previous project'
+          className='absolute left-3 top-[27vh] z-20 w-11 h-11 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-[20px] flex items-center justify-center cursor-pointer transition-colors hover:bg-[#915eff]'>
+          ‹
+        </button>
+        <button onClick={(e)=>{e.stopPropagation();onNext();}} title='Next project'
+          className='absolute right-3 top-[27vh] z-20 w-11 h-11 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-[20px] flex items-center justify-center cursor-pointer transition-colors hover:bg-[#915eff]'>
+          ›
         </button>
 
         <div className='w-full bg-black'>
@@ -65,6 +77,20 @@ const ProjectModal=({project,onClose})=>{
           </div>
 
           <p className='mt-4 text-secondary text-[15px] leading-[26px]'>{description}</p>
+
+          {highlights && highlights.length > 0 && (
+            <div className='mt-5'>
+              <p className='text-white font-semibold text-[15px] mb-3'>Highlights</p>
+              <ul className='space-y-2'>
+                {highlights.map((h,i)=>(
+                  <li key={i} className='flex items-start gap-2.5 text-secondary text-[14px] leading-[23px]'>
+                    <span className='mt-[7px] w-1.5 h-1.5 rounded-full bg-[#915eff] shrink-0'/>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className='mt-5 pt-5 border-t border-white/5 flex flex-wrap gap-2'>
             {tags.map((tag)=>(
@@ -162,8 +188,22 @@ const ProjectCard=({index,name,description,tags,image,video,source_code_link,liv
     </motion.div>
   )
 }
+const FILTERS = [
+  { key: 'all', label: 'All' },
+  { key: 'ai', label: 'AI / LLM' },
+  { key: 'fullstack', label: 'Full-Stack' },
+  { key: 'payments', label: 'Payments' },
+];
+
 const Works = () => {
   const [selected, setSelected] = React.useState(null);
+  const [filter, setFilter] = React.useState('all');
+  const visible = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+  const step = (dir) => {
+    if (!selected) return;
+    const i = visible.indexOf(selected);
+    setSelected(visible[(i + dir + visible.length) % visible.length]);
+  };
   return (
     <>
     <motion.div>
@@ -185,9 +225,21 @@ const Works = () => {
           and manage projects effectively.
     </motion.p>
     </div>
-    <div className='mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7'>
+    <div className='mt-12 flex flex-wrap gap-3'>
+      {FILTERS.map(f=>(
+        <button key={f.key} onClick={()=>setFilter(f.key)}
+        className={`px-5 h-10 rounded-full text-[14px] font-semibold cursor-pointer transition-all duration-200 border ${
+          filter===f.key
+            ? 'bg-[#915eff] border-[#915eff] text-white shadow-[0_8px_24px_-8px_rgba(145,94,255,0.7)]'
+            : 'bg-white/5 border-white/10 text-secondary hover:border-[#915eff]/50 hover:text-white'
+        }`}>
+          {f.label}
+        </button>
+      ))}
+    </div>
+    <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7'>
     {
-      projects.map((project,index)=>(
+      visible.map((project,index)=>(
         <ProjectCard key={`project-${index}`}
         {...project}
         index={index}
@@ -198,7 +250,7 @@ const Works = () => {
     }
     </div>
     <AnimatePresence>
-      {selected && <ProjectModal project={selected} onClose={()=>setSelected(null)} />}
+      {selected && <ProjectModal project={selected} onClose={()=>setSelected(null)} onPrev={()=>step(-1)} onNext={()=>step(1)} />}
     </AnimatePresence>
     </>
   )

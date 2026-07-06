@@ -12,7 +12,6 @@ const Contact = () => {
   const PHONE_DISPLAY = "+92 318 4129599";
   const CAL = "https://cal.com/jahan-zaib-hbyjx4";
   const cal30 = `${CAL}/30min`;
-  const cal15 = `${CAL}/15min`;
   const emailHref = `mailto:${EMAIL}?subject=${encodeURIComponent("Hello Jahanzaib")}`;
 
   const Icon = ({ d }) => (
@@ -46,10 +45,7 @@ const Contact = () => {
             </div>
             <div className='mt-4 flex flex-wrap gap-3'>
               <a href={cal30} target='_blank' rel='noreferrer' className='flex items-center gap-2 px-4 h-10 rounded-full bg-[#915eff] text-white text-[13.5px] font-semibold transition-transform hover:scale-105'>
-                <span className='w-2 h-2 rounded-full bg-green-300'/> 30-min Interview
-              </a>
-              <a href={cal15} target='_blank' rel='noreferrer' className='flex items-center gap-2 px-4 h-10 rounded-full bg-white/10 border border-white/15 text-white text-[13.5px] font-semibold transition-colors hover:bg-white/20'>
-                <span className='w-2 h-2 rounded-full bg-[#00cea8]'/> 15-min Intro
+                <span className='w-2 h-2 rounded-full bg-green-300'/> Book a 30-min Interview
               </a>
             </div>
           </div>
